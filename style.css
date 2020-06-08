@@ -1,0 +1,274 @@
+
+/* General CSS */
+* {
+    color: white;
+    text-align: center;
+}
+
+.js {
+    display: inline-block;
+    background-color: yellow;
+    color: black;
+    padding: 20px 5px 2px 20px;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.window {
+    padding: 5px;
+    box-sizing: border-box;
+    border-bottom: 4px solid #FFFFFF;
+    border-right: 4px solid #FFFFFF;
+    border-left: 4px solid #808080;
+    border-top: 4px solid #808080;
+    background-color: #C0C0C0;
+}
+
+body {
+    background-color: black;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.menuItem {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+
+/* Counters */
+#timer {
+    border: 1px inset lightgray;
+    width: max-content;
+    height: 70%;
+    float: right;
+}
+#flag_counter {
+    border: 1px inset lightgrey;
+    width: max-content;
+    height: 70%;
+    float: right;
+}
+
+.digits {
+    margin: 0 3px;
+    background-image: url('assets/timer.png');
+    background-size: contain;
+    height: 100%;
+    width: max-content;
+}
+
+.digit {
+    height: 100%;
+}
+
+
+/* Buttons */
+.button, .button:hover {
+    box-sizing: border-box;
+    border-bottom: 4px solid #FFFFFF;
+    border-right: 4px solid #FFFFFF;
+    border-left: 4px solid #808080;
+    border-top: 4px solid #808080;
+    background-color: #C0C0C0;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button[type="submit"], button[type="button"] {
+    padding: 10px;
+    margin-top: auto;
+    width: 100%;
+}
+
+.button:active {
+    border-top: 4px solid #FFFFFF;
+    border-left: 4px solid #FFFFFF;
+    border-right: 4px solid #808080;
+    border-bottom: 4px solid #808080;
+}
+
+.button:focus {
+    outline: none;
+}
+
+
+/* Dropdown Button */
+.dropbtn, .dropbtn:hover, .dropbtn:active, .dropbtn:focus {
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 39px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-7px, 6px);
+    transform: rotate(-45deg) translate(-7px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-9px, -8px);
+    transform: rotate(45deg) translate(-9px, -8px);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: auto;
+}
+
+.show {display: block;}
+
+.dropitem {
+    display: block;
+    border: none;
+    padding: 0;
+    text-decoration: none;
+    text-align: left;
+    background-color: inherit;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dropitem:hover {
+    border: 0;
+    border-bottom: 1px solid darkgrey;
+}
+
+.dropitem:focus {
+    outline: none;
+}
+
+/* Custom field dialogue */
+.customDialogue-popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 9;
+    width: min-content;
+    height: min-content;
+
+}
+
+.customDialogue-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 5px;
+    align-items: flex-start;
+    align-content: flex-end;
+}
+
+input {
+    color: black;
+}
+
+/* Playing field */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-bottom: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    border-left: 3px solid #808080;
+    border-top: 3px solid #808080;
+    
+}
+
+tr {
+    height: 30px;
+}
+
+td {
+    width: 30px;
+    padding: 0;
+    box-sizing: border-box;
+    border-bottom: 3px solid #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    border-left: 3px solid #808080;
+    border-top: 3px solid #808080;
+    background-color: #C0C0C0;
+}
+
+td > p , td > .mine_img {
+    margin: 0;
+    display: none;
+    color: inherit;
+    font-size: 12pt;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    vertical-align: middle;
+}
+
+.clicked > p , .clicked > .mine_img {
+    display: inline;
+}
+
+.flag_img {
+    display: none;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.flagged > .flag_img {
+    display: inline;
+}
+
+td.hoverable:hover {
+    border: 1px solid grey;
+}
+
+td.clicked {
+    border: 1px solid grey;
+}
+
+._1.clicked {
+    color: blue;
+}
+
+._2.clicked {
+    color: green;
+}
+
+._3.clicked {
+    color: red;
+}
+
+._4.clicked {
+    color: darkblue;
+}
+
+._5.clicked {
+    color: brown;
+}
+
+._6.clicked {
+    color: cyan;
+}
+
+._7.clicked {
+    color: black;
+}
+
+._8.clicked {
+    color: grey;
+}
