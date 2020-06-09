@@ -28,6 +28,16 @@ var difficulties = {
     }
 };
 
+var highscores;
+var getHighscores = new XMLHttpRequest();
+getHighscores.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        highscores = JSON.parse(this.responseText);
+    }
+}
+getHighscores.open("GET", "highscores.json", true);
+getHighscores.send();
+
 function getQueryVaraible(variable) {
     // Helper function to query url
     var query =window.location.search.substring(1);
@@ -215,8 +225,27 @@ function revealCell(y, x) {
         clearInterval(timer);
         // Get the elapsed time of the game
         var stopTime = new Date();
-        var elapsed_time = new Date(stopTime - startTime)
-        setTimeout(() => alert("Victory!\nScore: " + elapsed_time/1000 + " seconds"), 10);
+        var elapsed_time = stopTime - startTime
+        console.log(elapsed_time + " " + (elapsed_time < 999));
+        setTimeout(() => {
+            if (difficulty && elapsed_time < highscores[difficulty].score) {
+                var name = prompt("Victory!\nNew Highscore: " + elapsed_time/1000 + " seconds.\nPlease enter your name: ", "");
+                if (name == null || name == "") return;
+                highscores[difficulty].name = name;
+                highscores[difficulty].score = elapsed_time;
+                var updateHighscores = new XMLHttpRequest();
+                updateHighscores.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        highscores = JSON.parse(this.responseText);
+                    }
+                }
+                updateHighscores.open("POST", "highscores.json", true);
+                updateHighscores.send(JSON.stringify(highscores));
+
+            } else {
+                alert("Victory!\nScore: " + elapsed_time/1000 + " seconds");
+            }
+        }, 10);
         Array.from(document.getElementsByTagName("td")).forEach(elem => {
             if (elem.classList.contains("mine") && !elem.classList.contains("flagged")) 
                 elem.classList.add("flagged");
