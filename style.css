@@ -157,7 +157,7 @@ button[type="submit"], button[type="button"] {
 }
 
 /* Custom field dialogue */
-.customDialogue-popup {
+.popup {
     display: none;
     position: absolute;
     top: 0;
@@ -171,13 +171,20 @@ button[type="submit"], button[type="button"] {
 
 }
 
-.customDialogue-column {
+.popup-column {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     padding: 5px;
     align-items: flex-start;
     align-content: flex-end;
+}
+
+.popup-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 5px;
 }
 
 input {

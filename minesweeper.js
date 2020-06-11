@@ -308,6 +308,13 @@ function closeCustomDialogue() {
     document.getElementById("customDialogue").style.display = "none";
 }
 
-/* TODO: 
-    - add highscores (serverside? php, nodeJS)
-*/
+function displayHighscores() {
+    document.getElementById("highscores-popup").style.display = "block";
+    document.getElementById("highscores-beginner-score").innerHTML = highscores.beginner.score;
+    document.getElementById("highscores-beginner-name").innerHTML = highscores.beginner.name;
+    document.getElementById("highscores-intermediate-score").innerHTML = highscores.intermediate.score;
+    document.getElementById("highscores-intermediate-name").innerHTML = highscores.intermediate.name;
+    document.getElementById("highscores-expert-score").innerHTML = highscores.expert.score;
+    document.getElementById("highscores-expert-name").innerHTML = highscores.expert.name;
+}
+
