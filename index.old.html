@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minesweeper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.old.css">
+    <script src="minesweeper.old.js"></script>
+</head>
+<body>
+    <h1 is="title">Minesweeper<span class="js">JS</span></h1>
+    <!-- Main Window -->
+    <div style="margin: 0 auto; padding: 0; width: auto; display: inline-block;">
+        <!-- Menu bar -->
+        <div class="menu">
+            <!-- Dropdown menu -->
+            <div class="menuItem" style="width: 40%;">
+                <div style="float: left;">
+                    <button onclick="displayMenu(this)" class="button dropbtn">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </button>
+                    <div id="dropdown" class="dropdown-content window">
+                        <!-- Difficulties and custom field is done in the url query -->
+                        <a href="?difficulty=beginner" class="dropitem"><strong>Beginner</strong></a>
+                        <a href="?difficulty=intermediate" class="dropitem"><strong>Intermediate</strong></a>
+                        <a href="?difficulty=expert" class="dropitem"><strong>Expert</strong></a>
+                        <button onclick="customDialogue()" class="dropitem"><strong>Custom</strong></button>
+                        <hr>
+                        <button onclick="displayHighscores()" class="dropitem"><strong>Highscores</strong></button>
+                    </div>
+                </div>
+            </div>
+            <!-- Reset Button -->
+            <div class="menuItem" style="width: 20%;">
+                <button onclick="clearInterval(timer); createField();" class="button reset" style="width: 56px; height: 56px;"><img src="assets/smiley.png" alt="Reset" width="100%" style="object-fit: contain;"></button>
+            </div>
+            <!-- Counters (timer/flags) -->
+            <div class="menuItem" style="width: 40%;" id="timer-box" onclick="toggleCounters(this)">
+                <div id="timer" style="display: block;">
+                    <div class="digits">
+                        <img class='digit' id="timer_hundreds" src="assets/zero.png">
+                        <img class='digit' id="timer_tenths" src="assets/zero.png">
+                        <img class='digit' id="timer_ones" src="assets/zero.png">
+                    </div>
+                </div>
+                <div id="flag_counter" style="display: none;">
+                    <div class="digits">
+                        <img class='digit' id="flag_hundreds" src="assets/zero.png">
+                        <img class='digit' id="flag_tenths" src="assets/zero.png">
+                        <img class='digit' id="flag_ones" src="assets/zero.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Playing Field -->
+        <table id="field" style="margin: auto; clear: both;">
+            <!-- This be filled using createField -->
+        </table>
+    </div>
+    <!-- Popup Dialogue for custom field -->
+    <div class='customDialogue-popup popup window' id="customDialogue">
+        <form action="" class="customDialogue-form" id="customDialogue-form">
+            <h1>Custom field</h3>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap;">
+                <div class="customDialogue-column popup-column">
+                    <label for="height"><b>Height</b></label>
+                    <input type="number" name="height" required>
+
+                    <label for="width"><b>Width</b></label>
+                    <input type="number" name="width" required>
+
+                    <label for="mines"><b>Mines</b></label>
+                    <input type="number" name="mines" required>
+                </div>
+                <div class="customDialogue-column popup-column">
+                    <button type="submit" class="button">Okay</button>
+                    <button type="button" class="button" onclick="closeCustomDialogue()">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Highscores Popup -->
+    <div class='popup window' id="highscores-popup">
+        <h1>Highscores</h1>
+        <div class="popup-column">
+            <div class="popup-row">
+                <p style="width:33%;">Beginner</p>
+                <p style="width:33%;"><span id="highscores-beginner-score"></span> seconds</p>
+                <p style="width:33%;"><span id="highscores-beginner-name"></span></p>
+            </div>
+            <div class="popup-row">
+                <p style="width:33%;">Intermediate</p>
+                <p style="width:33%;"><span id="highscores-intermediate-score"></span> seconds</p>
+                <p style="width:33%;"><span id="highscores-intermediate-name"></span></p>
+            </div>
+            <div class="popup-row">
+                <p style="width:33%;">Expert</p>
+                <p style="width:33%;"><span id="highscores-expert-score"></span> seconds</p>
+                <p style="width:33%;"><span id="highscores-expert-name"></span></p>
+            </div>
+        </div>
+    </div>
+    <!-- Create the initial playing field -->
+    <script>
+        if (!window.location.search){
+            window.location.search = '?difficulty=beginner';
+        }
+        createField();
+    </script>
+</body>
+</html>

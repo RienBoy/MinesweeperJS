@@ -1,11 +1,54 @@
-
-/* General CSS */
+/* General styles */
 * {
+    box-sizing: border-box;
+    background-color: inherit;
     color: white;
     text-align: center;
+    font-family: 'Times New Roman', Times, serif
+}
+body {
+    background-color: black;
+}
+a {
+    text-decoration: none;
+}
+button {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
 }
 
-.js {
+#main-window,
+#main-window > * {
+    margin: 5px auto;
+    padding: 0;
+    width: max-content;
+}
+#main-window {
+    margin: auto;
+}
+#customField-dialogue, #highscores-dialogue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: max-content;
+    width: max-content;
+}
+
+.block,
+#field td {
+    border-bottom: 4px solid #FFFFFF;
+    border-right: 4px solid #FFFFFF;
+    border-left: 4px solid #808080;
+    border-top: 4px solid #808080;
+    background-color: #C0C0C0;
+}
+
+#js {
     display: inline-block;
     background-color: yellow;
     color: black;
@@ -14,109 +57,54 @@
     border-radius: 2px;
 }
 
-.window {
-    padding: 5px;
-    box-sizing: border-box;
-    border-bottom: 4px solid #FFFFFF;
-    border-right: 4px solid #FFFFFF;
-    border-left: 4px solid #808080;
-    border-top: 4px solid #808080;
-    background-color: #C0C0C0;
+input {
+    background-color: white;
+    color: black;
 }
 
-body {
-    background-color: black;
-}
-
-.menu {
+#menu {
     display: flex;
-    flex-direction: row;
-    
+    width: 100%;
+    height: max-content;
+    padding: 0;
+    font-size: 0; /* Remove whitespace between divs due to \n and inline-block */
 }
-
-.menuItem {
+#menu > * {
     position: relative;
     display: inline-block;
-    margin: 10px;
-}
-
-
-/* Counters */
-#timer {
-    border: 1px inset lightgray;
-    width: max-content;
-    height: 70%;
-    float: right;
-}
-#flag_counter {
-    border: 1px inset lightgrey;
-    width: max-content;
-    height: 70%;
-    float: right;
-}
-
-.digits {
-    margin: 0 3px;
-    background-image: url('assets/timer.png');
-    background-size: contain;
     height: 100%;
-    width: max-content;
+    width: 20%;
+    margin: 0;
+    text-align: center; 
+}
+#menu > *:first-child, #menu > *:last-child {
+    width: 40%;
 }
 
-.digit {
-    height: 100%;
-}
-
-
-/* Buttons */
-.button, .button:hover {
-    box-sizing: border-box;
-    border-bottom: 4px solid #FFFFFF;
-    border-right: 4px solid #FFFFFF;
-    border-left: 4px solid #808080;
-    border-top: 4px solid #808080;
-    background-color: #C0C0C0;
-    cursor: pointer;
+#menu > *:first-child {
+    float: left;
     text-align: left;
-    text-decoration: none;
-    display: inline-block;
+}
+.close {
+    float: right;
 }
 
-button[type="submit"], button[type="button"] {
-    padding: 10px;
-    margin-top: auto;
-    width: 100%;
-}
-
-.button:active {
-    border-top: 4px solid #FFFFFF;
-    border-left: 4px solid #FFFFFF;
-    border-right: 4px solid #808080;
-    border-bottom: 4px solid #808080;
-}
-
-.button:focus {
-    outline: none;
-}
-
-
-/* Dropdown Button */
-.dropbtn, .dropbtn:hover, .dropbtn:active, .dropbtn:focus {
-    padding: 5px;
-    box-sizing: border-box;
+/* Dropdown */
+#dropdown-btn {
+    padding: 2px 2px 3px;    
 }
 
 .bar1, .bar2, .bar3 {
-    width: 39px;
+    width: 36px;
     height: 5px;
     background-color: white;
-    margin: 6px 0;
+    margin: 5px 0;
     transition: 0.4s;
 }
 
 .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-7px, 6px);
-    transform: rotate(-45deg) translate(-7px, 6px);
+    -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+    transform: rotate(-45deg) translate(-7px, 7px);
 }
 
 .change .bar2 {
@@ -124,115 +112,114 @@ button[type="submit"], button[type="button"] {
 }
 
 .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-9px, -8px);
-    transform: rotate(45deg) translate(-9px, -8px);
+    -webkit-transform: rotate(45deg) translate(-7px, -7px);
+    transform: rotate(45deg) translate(-7px, -7px);
 }
 
-.dropdown-content {
-    display: none;
+#dropdown-content {
     position: absolute;
-    min-width: auto;
-}
-
-.show {display: block;}
-
-.dropitem {
-    display: block;
-    border: none;
-    padding: 0;
-    text-decoration: none;
-    text-align: left;
-    background-color: inherit;
-    width: 100%;
-    cursor: pointer;
-}
-
-.dropitem:hover {
-    border: 0;
-    border-bottom: 1px solid darkgrey;
-}
-
-.dropitem:focus {
-    outline: none;
-}
-
-/* Custom field dialogue */
-.popup {
-    display: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 9;
-    width: min-content;
-    height: min-content;
-
-}
-
-.popup-column {
-    display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    padding: 5px;
+    z-index: 1;
+    font-size: initial;
+    margin-top: 3px;
+}
+
+#dropdown-content > * {
+    display: block;
+    width: 100%
+}
+
+#dropdown-content > a:hover, #dropdown-content > button:hover > strong {
+    text-decoration: underline;
+}
+
+/* Reset button */
+#reset-button {
+    height: auto;
+    max-width: max-content;
+}
+#reset-button > img {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* Counters */
+#counters {
+    border: 1px inset lightgrey;
+    width: max-content;
+    float: right;
+    height: 100%;
+    padding: 2px;
+}
+#counters * {
+    height: auto;
+    max-width: 100%;
+}
+#digits {
+    background-color: transparent;
+    background-image: url('assets/counter/timer.png');
+    background-size: cover;
+    width: max-content;
+}
+
+#timer > *, #flags > * {
+    width: 100%;
+    margin: 0 1px;
+}
+
+/* Custom Field */
+#customField-dialogue > form > div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+#customField-dialogue > form > div > div {
+    display: flex;
+    flex-flow: column nowrap;
     padding: 5px;
     align-items: flex-start;
-    align-content: flex-end;
 }
 
-.popup-row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 5px;
+#customField-dialogue button {
+    padding: 10px;
+    margin-top: auto;
+    width: 100%
 }
 
-input {
-    color: black;
+/* Highscores */
+#highscores-dialogue {
+    padding: 3px;
+    width: max-content;
+}
+#highscores-dialogue th {
+    border-bottom: 2px solid darkgrey;
 }
 
-/* Playing field */
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    border-bottom: 3px solid #FFFFFF;
-    border-right: 3px solid #FFFFFF;
-    border-left: 3px solid #808080;
-    border-top: 3px solid #808080;
-    
+#col-name {
+    width: 15rem;
+}
+#highscores-dialogue > button {
+    float: right;
+    padding: 3px;
 }
 
-tr {
+/* Playing Field */
+#field td {
+    width: 30px;
     height: 30px;
 }
-
-td {
-    width: 30px;
-    padding: 0;
-    box-sizing: border-box;
-    border-bottom: 3px solid #FFFFFF;
-    border-right: 3px solid #FFFFFF;
-    border-left: 3px solid #808080;
-    border-top: 3px solid #808080;
-    background-color: #C0C0C0;
+#field table {
+    border-spacing: 0;
 }
 
-td > p , td > .mine_img {
-    margin: 0;
+#field td > p, .mine_img {
     display: none;
-    color: inherit;
-    font-size: 12pt;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     vertical-align: middle;
-}
-
-.clicked > p , .clicked > .mine_img {
-    display: inline;
 }
 
 .flag_img {
     display: none;
-    margin: 0;
     vertical-align: middle;
 }
 
@@ -240,42 +227,44 @@ td > p , td > .mine_img {
     display: inline;
 }
 
-td.hoverable:hover {
+#field td.hoverable:hover, #field td.clicked {
     border: 1px solid grey;
 }
 
-td.clicked {
-    border: 1px solid grey;
+#field td.clicked > p, #field td.clicked > .mine_img {
+    display: inline;
+    color: inherit;
+    font-weight: bold;
 }
 
-._1.clicked {
+#field ._1 {
     color: blue;
 }
 
-._2.clicked {
+#field ._2 {
     color: green;
 }
 
-._3.clicked {
+#field ._3 {
     color: red;
 }
 
-._4.clicked {
+#field ._4 {
     color: darkblue;
 }
 
-._5.clicked {
+#field ._5 {
     color: brown;
 }
 
-._6.clicked {
+#field ._6 {
     color: cyan;
 }
 
-._7.clicked {
+#field ._7 {
     color: black;
 }
 
-._8.clicked {
+#field ._8 {
     color: grey;
 }
