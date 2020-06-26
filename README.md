@@ -4,5 +4,4 @@ This is an implementation of the classic game [Minesweeper](https://en.wikipedia
 To run the game simply download the repository and open the [index.html](./index.html) in your browser.
 
 ### TODO
-- [x] Implement Highscores (serverside)
-- [ ] Make Highscore popup grid
+- [ ] Improve styling for firefox

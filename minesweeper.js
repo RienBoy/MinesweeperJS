@@ -23,10 +23,26 @@ var difficulties = {
   },
 };
 
-async function fetchHighscores() {
+const fetchHighscores = async () => {
   const response = await fetch("./highscores.json");
   return (data = await response.json());
-}
+};
+
+const postHighscore = async (difficulty, name, score) => {
+  highscores[difficulty].name = name;
+  highscores[difficulty].score = score;
+  const rawResponse = await fetch("./highscores.json", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(highscores),
+  });
+  return (highscores = await rawResponse.json());
+};
+
+const setHighscores = (new_highscores) => (highscores = new_highscores);
 
 const afterRedraw = (callback) => {
   requestAnimationFrame(() => setTimeout(callback, 0));
@@ -167,9 +183,24 @@ function revealCell(cell) {
     clearInterval(timer);
     // Get the elapsed time of the game
     var elapsed_time = Date.now() - startTime;
-    afterRedraw(() =>
-      alert("Victory!\nScore: " + elapsed_time / 1000 + " secoonds")
-    );
+
+    if (difficulty && elapsed_time < highscores[difficulty].score) {
+      // Hooray! New highscore
+      const name = prompt(
+        "Vicory!\nNew Highscore: " +
+          elapsed_time / 1000 +
+          " seconds\nPlease enter your name:"
+      );
+      if (name) {
+        afterRedraw(() =>
+          postHighscore(difficulty, name, elapsed_time).then(setHighscores)
+        );
+      }
+    } else {
+      afterRedraw(() =>
+        alert("Victory!\nScore: " + elapsed_time / 1000 + " secoonds")
+      );
+    }
 
     gameOver(true);
   }
@@ -190,6 +221,9 @@ function placeFlag(cell) {
 }
 
 function createField(clicked_x = -1, clicked_y = -1) {
+  // Get highscores
+  fetchHighscores().then(setHighscores);
+
   // Remove previous field
   document.querySelector("#field table").innerHTML = "";
 
