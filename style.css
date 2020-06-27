@@ -1,6 +1,7 @@
 /* General styles */
 * {
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     background-color: inherit;
     color: white;
     text-align: center;
@@ -30,12 +31,13 @@ button {
 }
 #customField-dialogue, #highscores-dialogue {
     position: absolute;
-    top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
+    top: 0;
     margin: auto;
     height: max-content;
+    height: -moz-max-content; /* Still doesn't work! I give up. */
     width: max-content;
 }
 
@@ -206,6 +208,7 @@ input {
 
 /* Playing Field */
 #field td {
+    display: inline-block;
     width: 30px;
     height: 30px;
 }

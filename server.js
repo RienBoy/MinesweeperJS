@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs").promises;
 const url = require("url");
+const netinfs = require("os").networkInterfaces();
 
 const port = 8080;
 
@@ -10,6 +11,7 @@ const associations = {
   js: "text/javascript",
   png: "image/png",
   json: "application/json",
+  ico: "image/vnd.microsoft.icon",
 };
 
 http
@@ -78,3 +80,13 @@ http
       });
   })
   .listen(port);
+
+console.log("Server running on:");
+console.log(" - localhost:" + port);
+for (let interface in netinfs) {
+  for (let ip of netinfs[interface]) {
+    if (ip.family === "IPv4") {
+      console.log(" - " + ip.address + ":" + port);
+    }
+  }
+}
